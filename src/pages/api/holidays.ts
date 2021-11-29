@@ -8,12 +8,13 @@ const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<NextApiFunc> => {
-  const { lang, year } = req.query;
+  const { lang, country, year } = req.query;
   const actualLang = Array.isArray(lang) ? lang[0] : lang;
+  const actualCountry = Array.isArray(country) ? country[0] : country;
   const actualYear = parseInt(Array.isArray(year) ? year[0] : year);
 
   const request = await fetch(
-    `https://holidays-api-jf.herokuapp.com/holidays?country=CO&year=${
+    `https://holidays-api-jf.herokuapp.com/holidays?country=${actualCountry}&year=${
       actualYear || new Date().getFullYear()
     }`,
   );
