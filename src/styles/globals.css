@@ -42,6 +42,10 @@ img.photo {
   object-position: center;
 }
 
+figure.worldmap__figure-container {
+  background-color: unset !important;
+}
+
 @media screen and (min-width: 512px) {
   html,
   body {

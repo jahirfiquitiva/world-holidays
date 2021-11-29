@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { Component } from '@/components/global/component';
 import useRequest from '@/hooks/useRequest';
 import { HolidaysData } from '@/types/holidays';
+import { Map } from './map/map';
 
 const particleOptions = {
   particleCount: 250,
@@ -77,6 +78,7 @@ export const Home: Component = () => {
 
   return (
     <div style={{ textAlign: 'center' }}>
+      <Map />
       <h1>{t('its-holiday')}</h1>
       <br />
       {renderHolidayData()}
@@ -85,7 +87,9 @@ export const Home: Component = () => {
       <img
         className={'photo'}
         alt={'random photo from Colombia'}
-        src={'https://source.unsplash.com/collection/8308296?orientation=landscape'}
+        src={
+          'https://source.unsplash.com/collection/8308296?orientation=landscape'
+        }
         decoding={'async'}
         loading={'lazy'}
       />
