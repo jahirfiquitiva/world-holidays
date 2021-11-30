@@ -27,6 +27,18 @@ const handler = async (
   }
 
   const holidaysList = holidays.map((item: DefaultHoliday) => {
+    if (item.altName?.includes('Discovery of America')) {
+      const newItem: DefaultHoliday = {
+        ...item,
+        name: 'Día de la Raza',
+        altName: 'Columbus Day',
+      };
+      return {
+        ...newItem,
+        holiday: newItem.date,
+        holidayName: newItem.name,
+      };
+    }
     return { ...item, holiday: item.date, holidayName: item.name };
   });
 

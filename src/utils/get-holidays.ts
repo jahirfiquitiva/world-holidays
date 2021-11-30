@@ -42,19 +42,6 @@ export const localeDate = (
   });
 };
 
-const getHolidayNameForLanguage = (
-  holiday: DefaultHoliday,
-  lang?: string,
-): string => {
-  const { holidayName } = holiday;
-  if (!lang) return holidayName;
-  try {
-    // @ts-ignore
-    if (lang.includes('en')) return holiday.altName || holidayName;
-  } catch (e) {}
-  return holidayName;
-};
-
 const getIfDateIsToday = (timeInMillis?: number): boolean => {
   if (typeof timeInMillis === 'undefined') return false;
   const isInTheFuture = (timeInMillis || -1) < 0;
@@ -94,7 +81,7 @@ export const getHolidaysList = (
         // @ts-ignore
         date: holiday.holiday,
         exactDate: holidayDate,
-        name: getHolidayNameForLanguage(holiday, language),
+        name: holiday.name,
         altName: holiday.altName,
         timeDifference,
         itsToday: getIfDateIsToday(timeDifference),

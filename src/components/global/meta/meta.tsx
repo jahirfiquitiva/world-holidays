@@ -9,7 +9,7 @@ interface MetaProps extends ComponentProps {
 
 export const Meta: Component<MetaProps> = (props) => {
   const {
-    title = 'World Wide Holidays | Festivos en el Mundo | Feriados en el Mundo',
+    title = 'Worldwide Holidays | Festivos en el Mundo | Feriados en el Mundo',
     // eslint-disable-next-line max-len
     description = 'Get to know the upcoming worldwide holidays. Conoce los próximos festivos o feriados en el mundo',
   } = props;
