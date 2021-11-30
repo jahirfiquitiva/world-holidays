@@ -5,13 +5,14 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   height: -webkit-fill-available;
 }
 
 body {
   margin: 0 auto;
+  max-width: 768px;
 }
 
 a {
@@ -42,8 +43,10 @@ img.photo {
   object-position: center;
 }
 
-figure.worldmap__figure-container {
-  background-color: unset !important;
+main,
+figure.worldmap__figure-container,
+figure.worldmap__figure-container svg {
+  max-width: 100%;
 }
 
 @media screen and (min-width: 512px) {

@@ -47,13 +47,15 @@ export const Map = (): ReactElement => {
   };
 
   return (
-    <WorldMap
-      size={'responsive'}
-      data={data}
-      backgroundColor={'var(--nc-bg-2)'}
-      styleFunction={stylingFunction}
-      onClickFunction={onCountryClicked}
-      tooltipTextFunction={getTooltipText}
-    />
+    <div className={'map-container'}>
+      <WorldMap
+        size={'responsive'}
+        data={data}
+        backgroundColor={'var(--nc-bg-1)'}
+        styleFunction={stylingFunction}
+        onClickFunction={onCountryClicked}
+        tooltipTextFunction={getTooltipText}
+      />
+    </div>
   );
 };

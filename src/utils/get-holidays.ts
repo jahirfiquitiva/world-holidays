@@ -70,6 +70,7 @@ export const getColombianHolidays = (
         // @ts-ignore
         date: holiday.holiday,
         name: getHolidayNameForLanguage(holiday, language),
+        altName: holiday.altName,
         timeDifference,
         itsToday: getIfDateIsToday(timeDifference),
       };

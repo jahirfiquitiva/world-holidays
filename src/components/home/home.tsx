@@ -1,8 +1,9 @@
 import confetti from 'canvas-confetti';
 import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
+import { HolidaysForm } from './form/form';
 import { Map } from './map/map';
 
 import { Component } from '@/components/global/component';
@@ -19,11 +20,17 @@ const particleOptions = {
 
 export const Home: Component = () => {
   const { data: holidayData } = useHolidays();
-  console.log(holidayData);
   const { t, lang } = useTranslation('home');
   const { data, loading } = useRequest<HolidaysData>(
-    `/api/holidays?lang=${lang}&country=${holidayData.countryCode}`,
+    `/api/holidays?lang=${lang}&country=${holidayData.countryCode}&year=${holidayData.year}`,
   );
+
+  const showAltName = useMemo<boolean>(() => {
+    if (!data) return false;
+    const { holidays } = data;
+    if (!holidays) return false;
+    return holidays.every((holiday) => holiday.altName);
+  }, [data]);
 
   useEffect(() => {
     if (data && data.isHolidayToday) {
@@ -101,14 +108,40 @@ export const Home: Component = () => {
   ); */
 
   return (
-    <div>
+    <>
       <Map />
+      <HolidaysForm />
+      <br />
+      {loading && <p>{t('loading')}...</p>}
+      {!loading && data && (
+        <table style={{ width: '100%' }}>
+          <thead>
+            <tr>
+              <th>{t('list:holiday')}</th>
+              <th>{t('list:date')}</th>
+              {showAltName && <th>{t('list:alt-name')}</th>}
+            </tr>
+          </thead>
+
+          <tbody>
+            {data?.holidays?.map((holiday) => {
+              return (
+                <tr key={holiday.index}>
+                  <td>{holiday.name}</td>
+                  <td>{holiday.readableDate}</td>
+                  {showAltName && <td>{holiday.altName || '––'}</td>}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      )}
       <pre>
         <code>{JSON.stringify(holidayData, null, 2)}</code>
       </pre>
       <pre>
         <code>{JSON.stringify(data, null, 2)}</code>
       </pre>
-    </div>
+    </>
   );
 };

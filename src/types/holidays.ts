@@ -11,6 +11,7 @@ export interface HolidayItem {
   date: string;
   readableDate: string;
   name: string;
+  altName?: string;
   timeDifference?: number;
   itsToday?: boolean;
 }
