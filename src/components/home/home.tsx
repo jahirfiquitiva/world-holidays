@@ -12,7 +12,6 @@ import useRequest from '@/hooks/useRequest';
 import { useHolidays } from '@/providers/holidays';
 import { HolidaysData } from '@/types/holidays';
 
-
 const particleOptions = {
   particleCount: 250,
   spread: 150,
