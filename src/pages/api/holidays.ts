@@ -19,14 +19,21 @@ const handler = async (
     }`,
   );
   const response = await request.json();
-  const holidays = response.holidays.map((item: DefaultHoliday) => {
+  const { status } = request;
+  const { holidays } = response;
+
+  if (!holidays) {
+    return res.status(status).json(response);
+  }
+
+  const holidaysList = holidays.map((item: DefaultHoliday) => {
     return { ...item, holiday: item.date, holidayName: item.name };
   });
 
   try {
     return res
       .status(200)
-      .json(getColombianHolidays(holidays, actualLang || 'es-CO'));
+      .json(getColombianHolidays(holidaysList, actualLang || 'es-CO'));
   } catch (e: unknown) {
     return res.status(500).json({
       // @ts-ignore

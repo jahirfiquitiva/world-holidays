@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 
 import { Component, ComponentProps } from '@/components/global/component';
 import { HolidayItem } from '@/types';
+import { formatDate, serverDateToLocalDate } from '@/utils/get-holidays';
 
 interface ResultsProps extends ComponentProps {
   loading?: boolean;
@@ -11,11 +12,23 @@ interface ResultsProps extends ComponentProps {
 
 export const Results: Component<ResultsProps> = (props) => {
   const { loading, holidays } = props;
-  const { t } = useTranslation('home');
+  const { t, lang } = useTranslation('home');
 
   const showAltName = useMemo<boolean>(() => {
     if (!holidays) return false;
     return holidays.some((holiday) => holiday.altName);
+  }, [holidays]);
+
+  const upcomingHolidays = useMemo<Array<HolidayItem>>(() => {
+    if (!holidays) return [];
+    const now = new Date();
+    return holidays.filter(
+      (it) =>
+        serverDateToLocalDate(
+          new Date(`${it.date}T00:00:00Z`),
+          new Date().getTimezoneOffset(),
+        ).getTime() >= now.getTime(),
+    );
   }, [holidays]);
 
   if (loading) return <p>{t('common:loading')}...</p>;
@@ -33,10 +46,16 @@ export const Results: Component<ResultsProps> = (props) => {
         </thead>
 
         <tbody>
-          {(holidays || []).map((holiday) => {
+          {upcomingHolidays.map((holiday) => {
             return (
               <tr key={holiday.index}>
-                <td>{holiday.readableDate}</td>
+                <td>
+                  {formatDate(
+                    new Date(`${holiday.date}T00:00:00Z`),
+                    new Date().getTimezoneOffset(),
+                    lang,
+                  )}
+                </td>
                 <td>{holiday.name}</td>
                 {showAltName && <td>{holiday.altName || '––'}</td>}
               </tr>

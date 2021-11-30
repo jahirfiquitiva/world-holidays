@@ -12,14 +12,12 @@ export interface HolidayItem {
   readableDate: string;
   name: string;
   altName?: string;
-  timeDifference?: number;
-  itsToday?: boolean;
 }
 
 export interface HolidaysData {
   count: number;
   holidays: Array<HolidayItem>;
   nextHoliday?: HolidayItem | null;
-  isHolidayToday?: boolean;
   now?: string;
+  serverOffset?: number;
 }

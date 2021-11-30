@@ -5,12 +5,13 @@ import { useEffect, useMemo } from 'react';
 
 import { HolidaysForm } from './form/form';
 import { Map } from './map/map';
+import { Results } from './results/results';
 
 import { Component } from '@/components/global/component';
 import useRequest from '@/hooks/useRequest';
 import { useHolidays } from '@/providers/holidays';
 import { HolidaysData } from '@/types/holidays';
-import { Results } from './results/results';
+
 
 const particleOptions = {
   particleCount: 250,
@@ -26,6 +27,7 @@ export const Home: Component = () => {
     `/api/holidays?lang=${lang}&country=${holidayData.countryCode}&year=${holidayData.year}`,
   );
 
+  /* 
   const showAltName = useMemo<boolean>(() => {
     if (!data) return false;
     const { holidays } = data;
@@ -88,7 +90,7 @@ export const Home: Component = () => {
     );
   };
 
-  /* return (
+  return (
     <div style={{ textAlign: 'center' }}>
       <Map />
       <h1>{t('its-holiday')}</h1>
