@@ -93,17 +93,6 @@ export const Home: Component = () => {
       <h1>{t('its-holiday')}</h1>
       <br />
       {renderHolidayData()}
-      <br />
-      {/* eslint-disable-next-line @next/next/no-img-element }
-      <img
-        className={'photo'}
-        alt={'random photo from Colombia'}
-        src={
-          'https://source.unsplash.com/collection/8308296?orientation=landscape'
-        }
-        decoding={'async'}
-        loading={'lazy'}
-      />
     </div>
   ); */
 
@@ -117,8 +106,8 @@ export const Home: Component = () => {
         <table style={{ width: '100%' }}>
           <thead>
             <tr>
-              <th>{t('holiday')}</th>
               <th>{t('date')}</th>
+              <th>{t('holiday')}</th>
               {showAltName && <th>{t('list:alt-name')}</th>}
             </tr>
           </thead>
@@ -127,8 +116,8 @@ export const Home: Component = () => {
             {data?.holidays?.map((holiday) => {
               return (
                 <tr key={holiday.index}>
-                  <td>{holiday.name}</td>
                   <td>{holiday.readableDate}</td>
+                  <td>{holiday.name}</td>
                   {showAltName && <td>{holiday.altName || '––'}</td>}
                 </tr>
               );
@@ -136,6 +125,15 @@ export const Home: Component = () => {
           </tbody>
         </table>
       )}
+      <br />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className={'photo'}
+        alt={`random photo from ${holidayData.country}`}
+        src={`https://source.unsplash.com/weekly?${holidayData.country}&orientation=landscape`}
+        decoding={'async'}
+        loading={'lazy'}
+      />
       <pre>
         <code>{JSON.stringify(holidayData, null, 2)}</code>
       </pre>
