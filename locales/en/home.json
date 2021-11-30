@@ -7,6 +7,7 @@
   "holidays-in": "Holidays in {{year}}",
   "select-country": "Select a country from the list",
   "select-year": "Select a year",
+  "select-color": "Select a color",
   "holiday": "Holiday",
   "date": "Date"
 }

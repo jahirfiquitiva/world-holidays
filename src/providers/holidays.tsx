@@ -20,7 +20,7 @@ const defaultContextValue: HolidaysContextData = {
   country: 'Colombia',
   countryCode: 'CO',
   year: new Date().getFullYear(),
-  color: 'var(--nc-ac-1)',
+  color: '#79FFE1',
 };
 
 interface HolidaysContextValue {

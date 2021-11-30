@@ -1,5 +1,6 @@
 import useTranslation from 'next-translate/useTranslation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { ChromePicker, GithubPicker, TwitterPicker } from 'react-color';
 import countries from 'react-svg-worldmap/dist/countries.geo';
 
 import { useHolidays } from '@/providers/holidays';
@@ -26,7 +27,7 @@ const buildYearsList = (upcomingYears: number = 5): Array<number> => {
 
 export const HolidaysForm = () => {
   const { t } = useTranslation('home');
-  const { data, updateCountry, updateYear } = useHolidays();
+  const { data, updateCountry, updateYear, updateColor } = useHolidays();
 
   const getLocalizedCountryName = useCallback(
     (countryCode?: string, countryName?: string) => {
@@ -45,6 +46,7 @@ export const HolidaysForm = () => {
   );
   const yearsList = buildYearsList();
   const [currentYear, setCurrentYear] = useState(`${yearsList[0]}`);
+  const [currentColor, setCurrentColor] = useState(data.color);
 
   const onCountrySelected = useCallback(
     (country: string) => {
@@ -59,6 +61,7 @@ export const HolidaysForm = () => {
   const onFormSubmit = () => {
     if (inputValue) onCountrySelected(inputValue);
     if (currentYear) updateYear({ year: Number(currentYear) });
+    if (currentColor) updateColor({ color: currentColor });
   };
 
   useEffect(() => {
@@ -75,56 +78,69 @@ export const HolidaysForm = () => {
         onFormSubmit();
       }}
     >
-      <div className={styles.formFieldGroup}>
-        <label htmlFor={'country'}>{t('select-country')}:&nbsp;&nbsp;</label>
-        <input
-          id={'country'}
-          name={'country'}
-          list={'countries'}
-          type={'text'}
-          autoComplete={'off'}
-          value={inputValue}
-          onChange={(e) => {
-            setInputValue(e.target.value);
-          }}
-        />
+      <div>
+        <div className={styles.formFieldGroup}>
+          <label htmlFor={'country'}>{t('select-country')}:&nbsp;&nbsp;</label>
+          <input
+            id={'country'}
+            name={'country'}
+            list={'countries'}
+            type={'text'}
+            autoComplete={'off'}
+            value={inputValue}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
+          />
 
-        <datalist id={'countries'}>
-          {countriesList.map((country) => {
-            return (
-              <option
-                key={country.countryCode}
-                value={getLocalizedCountryName(
-                  country.countryCode,
-                  country.country,
-                )}
-              >
-                {country.countryCode}
-              </option>
-            );
-          })}
-        </datalist>
+          <datalist id={'countries'}>
+            {countriesList.map((country) => {
+              return (
+                <option
+                  key={country.countryCode}
+                  value={getLocalizedCountryName(
+                    country.countryCode,
+                    country.country,
+                  )}
+                >
+                  {country.countryCode}
+                </option>
+              );
+            })}
+          </datalist>
+        </div>
+        <div className={styles.formFieldGroup}>
+          <label htmlFor={'year-select'}>{t('select-year')}:&nbsp;&nbsp;</label>
+          <select
+            defaultValue={'2021'}
+            name={'year-select'}
+            value={currentYear}
+            onChange={(e) => {
+              setCurrentYear(e.target.value);
+            }}
+          >
+            {yearsList.map((it) => {
+              return (
+                <option key={it} value={`${it}`}>
+                  {it}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <br />
+        <button>Update</button>
       </div>
       <div className={styles.formFieldGroup}>
-        <label htmlFor={'year-select'}>{t('select-year')}:&nbsp;&nbsp;</label>
-        <select
-          defaultValue={'2021'}
-          name={'year-select'}
-          value={currentYear}
-          onChange={(e) => {
-            setCurrentYear(e.target.value);
+        <label htmlFor={'color-picker'}>{t('select-color')}:&nbsp;&nbsp;</label>
+        <ChromePicker
+          color={currentColor}
+          onChange={(color) => {
+            setCurrentColor(color.hex);
           }}
-        >
-          {yearsList.map((it) => {
-            return (
-              <option key={it} value={`${it}`}>
-                {it}
-              </option>
-            );
-          })}
-        </select>
+          disableAlpha
+        />
       </div>
-      <button>Update</button>
     </form>
   );
 };
