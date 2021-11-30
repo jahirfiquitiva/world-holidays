@@ -44,7 +44,7 @@ img.photo {
 }
 
 figure.worldmap__figure-container {
-  border: 2px solid rgba(0,0,0,0.12);
+  border: 2px solid rgba(0, 0, 0, 0.12);
   border-radius: 12px;
   margin-bottom: 2.4rem;
 }
@@ -87,6 +87,6 @@ table {
 
 @media (prefers-color-scheme: dark) {
   figure.worldmap__figure-container {
-  border-color: rgba(255,255,255,0.12);
+    border-color: rgba(255, 255, 255, 0.12);
   }
 }

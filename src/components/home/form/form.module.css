@@ -1,7 +1,7 @@
 .form {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-    gap: 1.2rem;
+  gap: 1.2rem;
 }
 
 .formFieldGroup {
@@ -12,14 +12,14 @@
 }
 
 .formFieldGroup:first-of-type {
-grid-row: 2;
+  grid-row: 2;
 }
 
 .formFieldGroup:last-of-type {
-grid-row: 1;
+  grid-row: 1;
 }
 
-.formFieldGroup input[type="text"]{
+.formFieldGroup input[type='text'] {
   width: 100%;
 }
 
@@ -34,10 +34,11 @@ grid-row: 1;
     gap: 2.4rem;
   }
 
-  .formFieldGroup:first-of-type, .formFieldGroup:last-of-type {
-grid-row: 1;
-}
-.formFieldGroup:last-of-type {
-grid-column: 2;
-}
+  .formFieldGroup:first-of-type,
+  .formFieldGroup:last-of-type {
+    grid-row: 1;
+  }
+  .formFieldGroup:last-of-type {
+    grid-column: 2;
+  }
 }

@@ -86,7 +86,6 @@ export const HolidaysForm: Component = () => {
           </label>
           <select
             id={'country-select'}
-            defaultValue={currentCountry}
             value={currentCountry}
             onChange={(e) => {
               setCurrentCountry(e.target.value);
@@ -107,7 +106,6 @@ export const HolidaysForm: Component = () => {
         <div className={styles.formFieldGroup}>
           <label htmlFor={'year-select'}>{t('select-year')}:&nbsp;&nbsp;</label>
           <select
-            defaultValue={'2021'}
             name={'year-select'}
             value={currentYear}
             onChange={(e) => {

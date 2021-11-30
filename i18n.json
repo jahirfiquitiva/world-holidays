@@ -1,6 +1,6 @@
 {
-  "locales": ["es"],
-  "defaultLocale": "es",
+  "locales": ["en", "es"],
+  "defaultLocale": "en",
   "pages": {
     "*": ["common", "not-found", "countries"],
     "/": ["home", "holidays"]

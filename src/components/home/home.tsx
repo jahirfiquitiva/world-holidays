@@ -37,12 +37,13 @@ export const Home: Component = () => {
   }, [getLocalizedCountryName, holidayData]);
 
   const imageUrl = useMemo<string>(() => {
-    return `https://source.unsplash.com/daily?${localizedCountryName},nature,architecture&orientation=landscape`
+    return `https://source.unsplash.com/daily?${localizedCountryName},nature,architecture&orientation=landscape`;
   }, [localizedCountryName]);
 
-  const renderCountryImage= () => {
+  const renderCountryImage = () => {
     if (loading) return null;
-    return <figure>
+    return (
+      <figure>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className={'photo'}
@@ -58,33 +59,30 @@ export const Home: Component = () => {
               {'. '}
               {t('source')}
               {': '}
-              <a
-                href={imageUrl}
-                target={'_blank'}
-                rel={'noopener noreferrer'}
-              >
+              <a href={imageUrl} target={'_blank'} rel={'noopener noreferrer'}>
                 Unsplash
               </a>
             </em>
           </small>
         </figcaption>
       </figure>
-  }
+    );
+  };
 
   return (
     <>
       <Map />
-    <div style={{maxWidth:768, margin:'0 auto'}}>
-      <HolidaysForm />
-      <br />
-      <Results
-        loading={loading}
-        holidays={data?.holidays}
-        nextHoliday={data?.nextHoliday}
-        country={localizedCountryName}
-      />
-      {renderCountryImage()}
-    </div>
+      <div style={{ maxWidth: 768, margin: '0 auto' }}>
+        <HolidaysForm />
+        <br />
+        <Results
+          loading={loading}
+          holidays={data?.holidays}
+          nextHoliday={data?.nextHoliday}
+          country={localizedCountryName}
+        />
+        {renderCountryImage()}
+      </div>
     </>
   );
 };
