@@ -33,14 +33,7 @@ const handler = async (
   try {
     return res
       .status(200)
-      .json(
-        getHolidaysList(
-          holidaysList,
-          new Date().getTimezoneOffset(),
-          0,
-          actualLang || 'es-CO',
-        ),
-      );
+      .json(getHolidaysList(holidaysList, 0, actualLang || 'es-CO'));
   } catch (e: unknown) {
     return res.status(500).json({
       // @ts-ignore
