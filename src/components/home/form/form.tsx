@@ -25,7 +25,7 @@ const buildYearsList = (upcomingYears: number = 5): Array<number> => {
 };
 
 export const HolidaysForm = () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('home');
   const { data, updateCountry, updateYear } = useHolidays();
 
   const getLocalizedCountryName = useCallback(
@@ -76,7 +76,9 @@ export const HolidaysForm = () => {
       }}
     >
       <div className={styles.formFieldGroup}>
-        <label htmlFor={'country'}>Choose a country from the list:</label>
+        <label htmlFor={'country'}>
+          {t('select-country')}:&nbsp;&nbsp;
+        </label>
         <input
           id={'country'}
           name={'country'}
@@ -106,7 +108,7 @@ export const HolidaysForm = () => {
       </div>
       <div className={styles.formFieldGroup}>
         <label htmlFor={'year-select'}>
-          {t('list:select-year')}:&nbsp;&nbsp;
+          {t('select-year')}:&nbsp;&nbsp;
         </label>
         <select
           defaultValue={'2021'}

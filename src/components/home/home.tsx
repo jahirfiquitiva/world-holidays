@@ -117,8 +117,8 @@ export const Home: Component = () => {
         <table style={{ width: '100%' }}>
           <thead>
             <tr>
-              <th>{t('list:holiday')}</th>
-              <th>{t('list:date')}</th>
+              <th>{t('holiday')}</th>
+              <th>{t('date')}</th>
               {showAltName && <th>{t('list:alt-name')}</th>}
             </tr>
           </thead>

@@ -3,5 +3,10 @@
   "not-today": "Not today!",
   "yes-it-is": "Yes, it is!",
   "next-holiday": "Upcoming holiday is on <0>{{holidayDate}}</0> and it's for <1>{{holidayName}}</1>",
-  "today-holiday": "It's for <0>{{holidayName}}</0>"
+  "today-holiday": "It's for <0>{{holidayName}}</0>",
+  "holidays-in": "Holidays in {{year}}",
+  "select-country": "Select a country from the list",
+  "select-year": "Select a year",
+  "holiday": "Holiday",
+  "date": "Date"
 }
