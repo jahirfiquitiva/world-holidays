@@ -26,7 +26,7 @@ export const Home: Component = () => {
     `/api/holidays?lang=${lang}&country=${holidayData.countryCode}&year=${holidayData.year}`,
   );
 
-  /* 
+  /*
   const showAltName = useMemo<boolean>(() => {
     if (!data) return false;
     const { holidays } = data;
