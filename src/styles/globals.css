@@ -53,6 +53,31 @@ table {
   table-layout: fixed;
 }
 
+.chrome-picker {
+  border: 2px solid var(--nc-bg-3);
+}
+
+.chrome-picker > div:last-of-type {
+  background-color: var(--nc-bg-2);
+}
+
+.chrome-picker > div:last-of-type input {
+  border: 1px solid var(--nc-bg-3) !important;
+  color: var(--nc-tx-2) !important;
+  box-shadow: unset !important;
+  margin-bottom: 0;
+}
+
+.chrome-picker > div:last-of-type svg {
+  color: var(--nc-tx-2) !important;
+  fill: var(--nc-tx-2) !important;
+}
+
+.chrome-picker > div:last-of-type svg:hover,
+.chrome-picker > div:last-of-type svg:focus {
+  background-color: var(--nc-bg-3) !important;
+}
+
 @media screen and (min-width: 512px) {
   html,
   body {
