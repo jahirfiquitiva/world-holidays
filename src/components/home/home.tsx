@@ -1,7 +1,5 @@
-import confetti from 'canvas-confetti';
-import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
-import { useEffect, useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
 
 import { HolidaysForm } from './form/form';
 import { Map } from './map/map';
@@ -12,13 +10,6 @@ import useRequest from '@/hooks/useRequest';
 import { useHolidays } from '@/providers/holidays';
 import { HolidaysData } from '@/types/holidays';
 
-const particleOptions = {
-  particleCount: 250,
-  spread: 150,
-  colors: ['#FCD116', '#003893', '#CE1126'],
-  disableForReducedMotion: true,
-};
-
 export const Home: Component = () => {
   const { data: holidayData } = useHolidays();
   const { t, lang } = useTranslation('home');
@@ -26,102 +17,49 @@ export const Home: Component = () => {
     `/api/holidays?lang=${lang}&country=${holidayData.countryCode}&year=${holidayData.year}`,
   );
 
-  /*
-  const showAltName = useMemo<boolean>(() => {
-    if (!data) return false;
-    const { holidays } = data;
-    if (!holidays) return false;
-    return holidays.every((holiday) => holiday.altName);
-  }, [data]);
-
-  useEffect(() => {
-    if (data && data.isHolidayToday) {
-      confetti(particleOptions);
-    }
-    return () => {
-      try {
-        confetti.reset();
-      } catch (e) {}
-    };
-  }, [data]);
-
-  const renderHolidayData = () => {
-    if (loading || !data) return <p>{t('common:loading')}...</p>;
-    if (!data.isHolidayToday) {
-      return (
-        <>
-          <h4>{t('not-today')}</h4>
-          <br />
-          {data.nextHoliday && (
-            <p>
-              <Trans
-                i18nKey={'home:next-holiday'}
-                components={[
-                  <b key={'holiday-date'} />,
-                  <b key={'holiday-name'} />,
-                ]}
-                values={{
-                  holidayDate: data.nextHoliday.readableDate,
-                  holidayName: t(`holidays:${data.nextHoliday.index}`),
-                }}
-              />
-            </p>
-          )}
-        </>
+  const getLocalizedCountryName = useCallback(
+    (countryCode?: string, countryName?: string) => {
+      const localizedCountryName = t(
+        `countries:${countryCode?.toLowerCase()}`,
+        {},
+        { default: countryName },
       );
-    }
-    return (
-      <>
-        <h4>{t('yes-it-is')}</h4>
-        <br />
-        {data.nextHoliday && (
-          <p>
-            <Trans
-              i18nKey={'home:today-holiday'}
-              components={[<b key={'holiday-name'} />]}
-              values={{
-                holidayName: t(`holidays:${data.nextHoliday.index}`),
-              }}
-            />
-          </p>
-        )}
-      </>
+      return localizedCountryName;
+    },
+    [t],
+  );
+
+  const localizedCountryName = useMemo<string>(() => {
+    return getLocalizedCountryName(
+      holidayData.countryCode,
+      holidayData.country,
     );
-  };
+  }, [getLocalizedCountryName, holidayData]);
 
-  return (
-    <div style={{ textAlign: 'center' }}>
-      <Map />
-      <h1>{t('its-holiday')}</h1>
-      <br />
-      {renderHolidayData()}
-    </div>
-  ); */
+  const imageUrl = useMemo<string>(() => {
+    return `https://source.unsplash.com/daily?${localizedCountryName},nature,architecture&orientation=landscape`
+  }, [localizedCountryName]);
 
-  return (
-    <>
-      <Map />
-      <HolidaysForm />
-      <br />
-      <Results loading={loading} holidays={data?.holidays} />
-      <figure>
+  const renderCountryImage= () => {
+    if (loading) return null;
+    return <figure>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className={'photo'}
-          alt={t('photo-alt', { country: holidayData.country || 'Somewhere' })}
-          src={`https://source.unsplash.com/daily?${holidayData.country}&orientation=landscape`}
+          alt={t('photo-alt', { country: localizedCountryName || 'Somewhere' })}
+          src={imageUrl}
           decoding={'async'}
           loading={'lazy'}
         />
         <figcaption style={{ textAlign: 'center' }}>
           <small>
             <em>
-              {t('photo-alt', { country: holidayData.country || 'Somewhere' })}
+              {t('photo-alt', { country: localizedCountryName || 'Somewhere' })}
               {'. '}
               {t('source')}
               {': '}
               <a
-                href={`https://source.unsplash.com/daily?${holidayData.country}&orientation=landscape`}
+                href={imageUrl}
                 target={'_blank'}
                 rel={'noopener noreferrer'}
               >
@@ -131,6 +69,22 @@ export const Home: Component = () => {
           </small>
         </figcaption>
       </figure>
+  }
+
+  return (
+    <>
+      <Map />
+    <div style={{maxWidth:768, margin:'0 auto'}}>
+      <HolidaysForm />
+      <br />
+      <Results
+        loading={loading}
+        holidays={data?.holidays}
+        nextHoliday={data?.nextHoliday}
+        country={localizedCountryName}
+      />
+      {renderCountryImage()}
+    </div>
     </>
   );
 };

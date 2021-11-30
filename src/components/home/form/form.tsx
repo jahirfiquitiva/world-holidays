@@ -5,6 +5,7 @@ import countries from 'react-svg-worldmap/dist/countries.geo';
 
 import styles from './form.module.css';
 
+import { Component } from '@/components/global/component';
 import { useHolidays } from '@/providers/holidays';
 
 interface Country {
@@ -12,9 +13,11 @@ interface Country {
   countryCode: string;
 }
 
-const countriesList: Array<Country> = countries.features.map((country) => {
-  return { countryCode: country.I, country: country.N };
-});
+const countriesList: Array<Country> = countries.features
+  .map((country) => {
+    return { countryCode: country.I, country: country.N };
+  })
+  .sort((a, b) => a.country.localeCompare(b.country));
 
 const buildYearsList = (upcomingYears: number = 5): Array<number> => {
   const years = [new Date().getFullYear()];
@@ -25,7 +28,7 @@ const buildYearsList = (upcomingYears: number = 5): Array<number> => {
   return years;
 };
 
-export const HolidaysForm = () => {
+export const HolidaysForm: Component = () => {
   const { t } = useTranslation('home');
   const { data, updateCountry, updateYear, updateColor } = useHolidays();
 
@@ -41,9 +44,7 @@ export const HolidaysForm = () => {
     [t],
   );
 
-  const [inputValue, setInputValue] = useState(
-    getLocalizedCountryName(data.countryCode, data.country),
-  );
+  const [currentCountry, setCurrentCountry] = useState(data.countryCode);
   const yearsList = buildYearsList();
   const [currentYear, setCurrentYear] = useState(`${yearsList[0]}`);
   const [currentColor, setCurrentColor] = useState(data.color);
@@ -51,7 +52,7 @@ export const HolidaysForm = () => {
   const onCountrySelected = useCallback(
     (country: string) => {
       const selectedCountry = countriesList.filter(
-        (it) => it.country === country,
+        (it) => it.countryCode === country,
       )?.[0];
       if (selectedCountry) updateCountry(selectedCountry);
     },
@@ -59,16 +60,16 @@ export const HolidaysForm = () => {
   );
 
   const onFormSubmit = () => {
-    if (inputValue) onCountrySelected(inputValue);
+    if (currentCountry) onCountrySelected(currentCountry);
     if (currentYear) updateYear({ year: Number(currentYear) });
     if (currentColor) updateColor({ color: currentColor });
   };
 
   useEffect(() => {
-    if (data.country && data.countryCode) {
-      setInputValue(getLocalizedCountryName(data.countryCode, data.country));
+    if (data.countryCode) {
+      setCurrentCountry(data.countryCode);
     }
-  }, [data.country, data.countryCode, getLocalizedCountryName]);
+  }, [data.countryCode]);
 
   return (
     <form
@@ -80,34 +81,28 @@ export const HolidaysForm = () => {
     >
       <div>
         <div className={styles.formFieldGroup}>
-          <label htmlFor={'country'}>{t('select-country')}:&nbsp;&nbsp;</label>
-          <input
-            id={'country'}
-            name={'country'}
-            list={'countries'}
-            type={'text'}
-            autoComplete={'off'}
-            value={inputValue}
+          <label htmlFor={'country-select'}>
+            {t('select-country')}:&nbsp;&nbsp;
+          </label>
+          <select
+            id={'country-select'}
+            defaultValue={currentCountry}
+            value={currentCountry}
             onChange={(e) => {
-              setInputValue(e.target.value);
+              setCurrentCountry(e.target.value);
             }}
-          />
-
-          <datalist id={'countries'}>
+          >
             {countriesList.map((country) => {
               return (
-                <option
-                  key={country.countryCode}
-                  value={getLocalizedCountryName(
+                <option key={country.countryCode} value={country.countryCode}>
+                  {getLocalizedCountryName(
                     country.countryCode,
                     country.country,
                   )}
-                >
-                  {country.countryCode}
                 </option>
               );
             })}
-          </datalist>
+          </select>
         </div>
         <div className={styles.formFieldGroup}>
           <label htmlFor={'year-select'}>{t('select-year')}:&nbsp;&nbsp;</label>
@@ -128,7 +123,6 @@ export const HolidaysForm = () => {
             })}
           </select>
         </div>
-        <br />
         <button>{t('update')}</button>
       </div>
       <div className={styles.formFieldGroup}>

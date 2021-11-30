@@ -1,5 +1,5 @@
 {
-  "its-holiday": "It's a holiday in Colombia?",
+  "its-holiday": "It's a holiday in {{country}}?",
   "not-today": "Not today!",
   "yes-it-is": "Yes, it is!",
   "next-holiday": "Upcoming holiday is on <0>{{holidayDate}}</0> and it's for <1>{{holidayName}}</1>",

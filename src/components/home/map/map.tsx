@@ -1,5 +1,5 @@
 import useTranslation from 'next-translate/useTranslation';
-import { ReactElement } from 'react';
+import { ReactElement, useState, useEffect } from 'react';
 import WorldMap, { CountryContext, Data } from 'react-svg-worldmap';
 import countries from 'react-svg-worldmap/dist/countries.geo';
 
@@ -9,7 +9,8 @@ const data: Data = countries.features.map((country) => {
   return { country: country.I, value: 0 };
 });
 
-export const Map = (): ReactElement => {
+export const Map = (): ReactElement | null => {
+  const [mounted, setMounted] = useState(false);
   const { data: holidaysData, updateCountry } = useHolidays();
   const { countryCode: selectedCountryCode } = holidaysData;
   const { t } = useTranslation('countries');
@@ -45,6 +46,12 @@ export const Map = (): ReactElement => {
       countryCode: context.countryCode,
     });
   };
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <div className={'map-container'}>

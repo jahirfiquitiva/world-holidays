@@ -2,7 +2,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { NextApiFunc, DefaultHoliday } from '@/types';
-import { getColombianHolidays } from '@/utils/get-holidays';
+import { getHolidaysList } from '@/utils/get-holidays';
 
 const handler = async (
   req: NextApiRequest,
@@ -33,7 +33,14 @@ const handler = async (
   try {
     return res
       .status(200)
-      .json(getColombianHolidays(holidaysList, actualLang || 'es-CO'));
+      .json(
+        getHolidaysList(
+          holidaysList,
+          new Date().getTimezoneOffset(),
+          0,
+          actualLang || 'es-CO',
+        ),
+      );
   } catch (e: unknown) {
     return res.status(500).json({
       // @ts-ignore

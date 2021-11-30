@@ -9,15 +9,19 @@ export interface DefaultHoliday {
 export interface HolidayItem {
   index?: number;
   date: string;
-  readableDate: string;
+  exactDate?: Date | null;
+  readableDate?: string | null;
   name: string;
   altName?: string;
+  timeDifference?: number;
+  itsToday?: boolean;
 }
 
 export interface HolidaysData {
   count: number;
   holidays: Array<HolidayItem>;
-  nextHoliday?: HolidayItem | null;
+  nextHoliday?: HolidayItem;
+  isHolidayToday?: boolean;
   now?: string;
   serverOffset?: number;
 }

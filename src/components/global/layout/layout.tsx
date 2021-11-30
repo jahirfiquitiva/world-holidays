@@ -24,6 +24,12 @@ export const Layout: Component = (props: ComponentProps) => {
             target={'_blank'}
           >
             {t('source-code')}
+          </a> <a
+            href={'https://jahir.dev'}
+            rel={'noopener noreferrer'}
+            target={'_blank'}
+          >
+            {t('author')}
           </a>
         </nav>
       </header>
