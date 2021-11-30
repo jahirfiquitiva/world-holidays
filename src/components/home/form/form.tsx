@@ -30,7 +30,7 @@ const buildYearsList = (upcomingYears: number = 5): Array<number> => {
 
 export const HolidaysForm: Component = () => {
   const { t } = useTranslation('home');
-  const { data, updateCountry, updateYear, updateColor } = useHolidays();
+  const { data, update: updateHolidaysData } = useHolidays();
 
   const getLocalizedCountryName = useCallback(
     (countryCode?: string, countryName?: string) => {
@@ -49,20 +49,16 @@ export const HolidaysForm: Component = () => {
   const [currentYear, setCurrentYear] = useState(`${yearsList[0]}`);
   const [currentColor, setCurrentColor] = useState(data.color);
 
-  const onCountrySelected = useCallback(
-    (country: string) => {
-      const selectedCountry = countriesList.filter(
-        (it) => it.countryCode === country,
-      )?.[0];
-      if (selectedCountry) updateCountry(selectedCountry);
-    },
-    [updateCountry],
-  );
-
   const onFormSubmit = () => {
-    if (currentCountry) onCountrySelected(currentCountry);
-    if (currentYear) updateYear({ year: Number(currentYear) });
-    if (currentColor) updateColor({ color: currentColor });
+    const selectedCountry = countriesList.filter(
+      (it) => it.countryCode === currentCountry,
+    )?.[0];
+    updateHolidaysData({
+      color: currentColor,
+      year: Number(currentYear),
+      country: selectedCountry.country,
+      countryCode: selectedCountry.countryCode,
+    });
   };
 
   useEffect(() => {

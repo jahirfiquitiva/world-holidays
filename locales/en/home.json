@@ -14,7 +14,7 @@
   "alt-name": "Alt name",
   "no-holidays": "No holidays found!",
   "disclaimer": "Disclaimer",
-  "holidays-weekend": "Certain holidays might not be listed if they happen in a weekend day",
+  "holidays-weekend": "Some holidays might not be listed if they happen in a weekend day",
   "photo-alt": "Random photo from {{country}}",
   "source": "Source"
 }

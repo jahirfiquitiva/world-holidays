@@ -11,7 +11,7 @@ const data: Data = countries.features.map((country) => {
 
 export const Map = (): ReactElement | null => {
   const [mounted, setMounted] = useState(false);
-  const { data: holidaysData, updateCountry } = useHolidays();
+  const { data: holidaysData, update: updateHolidaysData } = useHolidays();
   const { countryCode: selectedCountryCode } = holidaysData;
   const { t } = useTranslation('countries');
 
@@ -41,7 +41,7 @@ export const Map = (): ReactElement | null => {
   };
 
   const onCountryClicked = (context: CountryContext) => {
-    updateCountry({
+    updateHolidaysData({
       country: context.countryName,
       countryCode: context.countryCode,
     });
