@@ -57,8 +57,3 @@
   align-items: center;
   text-align: center;
 }
-
-.container footer .wrapper p:last-of-type {
-  font-size: 0.75rem;
-  opacity: 0.7;
-}
