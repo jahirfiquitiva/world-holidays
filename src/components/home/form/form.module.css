@@ -10,6 +10,10 @@
   gap: 0.6rem;
 }
 
+.formFieldGroup input[type="text"]{
+  width: 100%;
+}
+
 .form button {
   display: inline-block;
   align-self: start;

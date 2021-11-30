@@ -9,9 +9,9 @@ interface MetaProps extends ComponentProps {
 
 export const Meta: Component<MetaProps> = (props) => {
   const {
-    title = 'Colombian Holidays | Festivos en Colombia | Feriados en Colombia',
+    title = 'World Wide Holidays | Festivos en el Mundo | Feriados en el Mundo',
     // eslint-disable-next-line max-len
-    description = 'Get to know the upcoming colombian holidays. Conoce los próximos festivos o feriados en Colombia',
+    description = 'Get to know the upcoming worldwide holidays. Conoce los próximos festivos o feriados en el mundo',
   } = props;
   return (
     <Head>

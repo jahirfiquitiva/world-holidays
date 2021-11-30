@@ -10,6 +10,7 @@ import { Component } from '@/components/global/component';
 import useRequest from '@/hooks/useRequest';
 import { useHolidays } from '@/providers/holidays';
 import { HolidaysData } from '@/types/holidays';
+import { Results } from './results/results';
 
 const particleOptions = {
   particleCount: 250,
@@ -101,39 +102,31 @@ export const Home: Component = () => {
       <Map />
       <HolidaysForm />
       <br />
-      {loading && <p>{t('loading')}...</p>}
-      {!loading && data && (
-        <table style={{ width: '100%' }}>
-          <thead>
-            <tr>
-              <th>{t('date')}</th>
-              <th>{t('holiday')}</th>
-              {showAltName && <th>{t('list:alt-name')}</th>}
-            </tr>
-          </thead>
-
-          <tbody>
-            {data?.holidays?.map((holiday) => {
-              return (
-                <tr key={holiday.index}>
-                  <td>{holiday.readableDate}</td>
-                  <td>{holiday.name}</td>
-                  {showAltName && <td>{holiday.altName || '––'}</td>}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      )}
-      <br />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className={'photo'}
-        alt={`random photo from ${holidayData.country}`}
-        src={`https://source.unsplash.com/weekly?${holidayData.country}&orientation=landscape`}
-        decoding={'async'}
-        loading={'lazy'}
-      />
+      <Results loading={loading} holidays={data?.holidays} />
+      <figure>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          className={'photo'}
+          alt={`Random photo from ${holidayData.country}`}
+          src={`https://source.unsplash.com/daily?${holidayData.country}&orientation=landscape`}
+          decoding={'async'}
+          loading={'lazy'}
+        />
+        <figcaption style={{ textAlign: 'center' }}>
+          <small>
+            <em>
+              Random photo from {holidayData.country}. Source:{' '}
+              <a
+                href={`https://source.unsplash.com/daily?${holidayData.country}&orientation=landscape`}
+                target={'_blank'}
+                rel={'noopener noreferrer'}
+              >
+                Unsplash
+              </a>
+            </em>
+          </small>
+        </figcaption>
+      </figure>
       <pre>
         <code>{JSON.stringify(holidayData, null, 2)}</code>
       </pre>

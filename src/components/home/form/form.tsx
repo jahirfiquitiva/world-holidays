@@ -76,13 +76,12 @@ export const HolidaysForm = () => {
       }}
     >
       <div className={styles.formFieldGroup}>
-        <label htmlFor={'country'}>
-          {t('select-country')}:&nbsp;&nbsp;
-        </label>
+        <label htmlFor={'country'}>{t('select-country')}:&nbsp;&nbsp;</label>
         <input
           id={'country'}
           name={'country'}
           list={'countries'}
+          type={'text'}
           autoComplete={'off'}
           value={inputValue}
           onChange={(e) => {
@@ -107,9 +106,7 @@ export const HolidaysForm = () => {
         </datalist>
       </div>
       <div className={styles.formFieldGroup}>
-        <label htmlFor={'year-select'}>
-          {t('select-year')}:&nbsp;&nbsp;
-        </label>
+        <label htmlFor={'year-select'}>{t('select-year')}:&nbsp;&nbsp;</label>
         <select
           defaultValue={'2021'}
           name={'year-select'}

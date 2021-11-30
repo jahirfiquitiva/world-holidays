@@ -18,7 +18,6 @@ export const Layout: Component = (props: ComponentProps) => {
       <header>
         <nav>
           <Link href={'/'}>{t('home')}</Link>
-          <Link href={'/all'}>{t('all-holidays')}</Link>
           <a
             href={'https://github.com/jahirfiquitiva/col-holidays'}
             rel={'noopener noreferrer'}
