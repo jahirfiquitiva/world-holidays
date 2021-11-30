@@ -107,7 +107,7 @@ export const Home: Component = () => {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className={'photo'}
-          alt={`Random photo from ${holidayData.country}`}
+          alt={t('photo-alt', { country: holidayData.country })}
           src={`https://source.unsplash.com/daily?${holidayData.country}&orientation=landscape`}
           decoding={'async'}
           loading={'lazy'}
@@ -115,7 +115,10 @@ export const Home: Component = () => {
         <figcaption style={{ textAlign: 'center' }}>
           <small>
             <em>
-              Random photo from {holidayData.country}. Source:{' '}
+              {t('photo-alt', { country: holidayData.country })}
+              {'. '}
+              {t('source')}
+              {': '}
               <a
                 href={`https://source.unsplash.com/daily?${holidayData.country}&orientation=landscape`}
                 target={'_blank'}
@@ -127,12 +130,6 @@ export const Home: Component = () => {
           </small>
         </figcaption>
       </figure>
-      <pre>
-        <code>{JSON.stringify(holidayData, null, 2)}</code>
-      </pre>
-      <pre>
-        <code>{JSON.stringify(data, null, 2)}</code>
-      </pre>
     </>
   );
 };

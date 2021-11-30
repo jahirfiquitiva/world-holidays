@@ -8,7 +8,13 @@
   "select-country": "Selecciona un país de la lista",
   "select-year": "Selecciona un año",
   "select-color": "Selecciona un color",
+  "update": "Actualizar",
   "holiday": "Festivo",
   "date": "Fecha",
-  "alt-name": "Nombre alternativo"
+  "alt-name": "Nombre alternativo",
+  "no-holidays": "No encontramos festivos/feriados",
+  "disclaimer": "Aclaración",
+  "holidays-weekend": "Algunos festivos/feriados no serán listados si suceden en fin de semana",
+  "photo-alt": "Foto aleatoria de {{country}}",
+  "source": "Fuente"
 }

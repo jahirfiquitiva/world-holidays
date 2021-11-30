@@ -129,7 +129,7 @@ export const HolidaysForm = () => {
           </select>
         </div>
         <br />
-        <button>Update</button>
+        <button>{t('update')}</button>
       </div>
       <div className={styles.formFieldGroup}>
         <label htmlFor={'color-picker'}>{t('select-color')}:&nbsp;&nbsp;</label>

@@ -18,8 +18,8 @@ export const Results: Component<ResultsProps> = (props) => {
     return holidays.some((holiday) => holiday.altName);
   }, [holidays]);
 
-  if (loading) return <p>{t('loading')}...</p>;
-  if (!holidays) return <p>No holidays!</p>;
+  if (loading) return <p>{t('common:loading')}...</p>;
+  if (!holidays) return <p>{t('no-holidays')}</p>;
 
   return (
     <>
@@ -47,8 +47,7 @@ export const Results: Component<ResultsProps> = (props) => {
       <blockquote>
         <small>
           <em>
-            <b>Disclaimer:</b>&nbsp;Certain holidays might not be listed if they
-            happen in a weekend day
+            <b>{t('disclaimer')}:</b>&nbsp;{t('holidays-weekend')}
           </em>
         </small>
       </blockquote>
