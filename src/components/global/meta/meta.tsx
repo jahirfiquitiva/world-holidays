@@ -20,21 +20,21 @@ export const Meta: Component<MetaProps> = (props) => {
       <meta name={'description'} content={description} />
 
       <meta property={'og:type'} content={'website'} />
-      <meta property={'og:url'} content={'https://col-holidays.co/'} />
+      <meta property={'og:url'} content={'https://worldwide-holidays.vercel.app/'} />
       <meta property={'og:title'} content={title} />
       <meta property={'og:description'} content={description} />
       <meta
         property={'og:image'}
-        content={'https://col-holidays.co/static/banner.png'}
+        content={'https://worldwide-holidays.vercel.app/static/banner.png'}
       />
 
       <meta property={'twitter:card'} content={'summary_large_image'} />
-      <meta property={'twitter:url'} content={'https://col-holidays.co/'} />
+      <meta property={'twitter:url'} content={'https://worldwide-holidays.vercel.app/'} />
       <meta property={'twitter:title'} content={title} />
       <meta property={'twitter:description'} content={description} />
       <meta
         property={'twitter:image'}
-        content={'https://col-holidays.co/static/banner.png'}
+        content={'https://worldwide-holidays.vercel.app/static/banner.png'}
       />
 
       <link
