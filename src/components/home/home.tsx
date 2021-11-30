@@ -109,7 +109,7 @@ export const Home: Component = () => {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className={'photo'}
-          alt={t('photo-alt', { country: holidayData.country })}
+          alt={t('photo-alt', { country: holidayData.country || 'Somewhere' })}
           src={`https://source.unsplash.com/daily?${holidayData.country}&orientation=landscape`}
           decoding={'async'}
           loading={'lazy'}
@@ -117,7 +117,7 @@ export const Home: Component = () => {
         <figcaption style={{ textAlign: 'center' }}>
           <small>
             <em>
-              {t('photo-alt', { country: holidayData.country })}
+              {t('photo-alt', { country: holidayData.country || 'Somewhere' })}
               {'. '}
               {t('source')}
               {': '}
