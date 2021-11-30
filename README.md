@@ -1,1 +1,1 @@
-# [Colombian Holidays](https://col-holidays.co/)
+# [Worldwide Holidays](https://worldwide-holidays.vercel.app/)

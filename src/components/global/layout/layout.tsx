@@ -18,13 +18,19 @@ export const Layout: Component = (props: ComponentProps) => {
       <header>
         <nav>
           <Link href={'/'}>{t('home')}</Link>
-          <Link href={'/all'}>{t('all-holidays')}</Link>
           <a
             href={'https://github.com/jahirfiquitiva/col-holidays'}
             rel={'noopener noreferrer'}
             target={'_blank'}
           >
             {t('source-code')}
+          </a>{' '}
+          <a
+            href={'https://jahir.dev'}
+            rel={'noopener noreferrer'}
+            target={'_blank'}
+          >
+            {t('author')}
           </a>
         </nav>
       </header>
@@ -46,25 +52,6 @@ export const Layout: Component = (props: ComponentProps) => {
                 <a
                   key={'jahir-link'}
                   href={'https://jahir.dev'}
-                  rel={'noopener noreferrer'}
-                  target={'_blank'}
-                />,
-              ]}
-            />
-          </p>
-          <p>
-            <Trans
-              i18nKey={'common:inspired'}
-              components={[
-                <a
-                  key={'srhart-link'}
-                  href={'https://srhart.co/'}
-                  rel={'noopener noreferrer'}
-                  target={'_blank'}
-                />,
-                <a
-                  key={'esfestivo-link'}
-                  href={'https://esfestivo.co/'}
                   rel={'noopener noreferrer'}
                   target={'_blank'}
                 />,

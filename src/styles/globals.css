@@ -5,13 +5,14 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   height: -webkit-fill-available;
 }
 
 body {
   margin: 0 auto;
+  max-width: 768px;
 }
 
 a {
@@ -42,9 +43,50 @@ img.photo {
   object-position: center;
 }
 
+figure.worldmap__figure-container {
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  margin-bottom: 2.4rem;
+}
+
+table {
+  table-layout: fixed;
+}
+
+.chrome-picker {
+  border: 2px solid var(--nc-bg-3);
+}
+
+.chrome-picker > div:last-of-type {
+  background-color: var(--nc-bg-2);
+}
+
+.chrome-picker > div:last-of-type input {
+  border: 1px solid var(--nc-bg-3) !important;
+  color: var(--nc-tx-2) !important;
+  box-shadow: unset !important;
+  margin-bottom: 0;
+}
+
+.chrome-picker > div:last-of-type svg {
+  color: var(--nc-tx-2) !important;
+  fill: var(--nc-tx-2) !important;
+}
+
+.chrome-picker > div:last-of-type svg:hover,
+.chrome-picker > div:last-of-type svg:focus {
+  background-color: var(--nc-bg-3) !important;
+}
+
 @media screen and (min-width: 512px) {
   html,
   body {
     font-size: 18px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  figure.worldmap__figure-container {
+    border-color: rgba(255, 255, 255, 0.12);
   }
 }

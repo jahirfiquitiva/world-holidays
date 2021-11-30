@@ -10,8 +10,8 @@
 
 .container header {
   width: 100vw;
-  padding-top: 4rem;
-  padding-bottom: 2rem;
+  padding-top: 3.2rem;
+  padding-bottom: 1.6rem;
   min-height: 3.2rem;
 }
 
@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem 1rem;
+  padding: 0 1rem 2rem;
 }
 
 .container footer {
@@ -50,15 +50,10 @@
 
 .container footer .wrapper {
   margin: 0 auto;
-  max-width: 750px;
-  padding: 2rem;
+  max-width: 768px;
+  padding: 1.6rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.container footer .wrapper p:last-of-type {
-  font-size: 0.75rem;
-  opacity: 0.7;
 }
