@@ -1,11 +1,11 @@
 import useTranslation from 'next-translate/useTranslation';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { ChromePicker, GithubPicker, TwitterPicker } from 'react-color';
+import { useCallback, useEffect, useState } from 'react';
+import { ChromePicker } from 'react-color';
 import countries from 'react-svg-worldmap/dist/countries.geo';
 
-import { useHolidays } from '@/providers/holidays';
-
 import styles from './form.module.css';
+
+import { useHolidays } from '@/providers/holidays';
 
 interface Country {
   country: string;
