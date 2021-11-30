@@ -12,7 +12,7 @@ const formatDate = (date: Date, language: string = 'es-CO') => {
   return date.toLocaleString(language, {
     timeZone: 'America/Bogota',
     weekday: 'long',
-    year: undefined,
+    year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
