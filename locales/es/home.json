@@ -9,5 +9,6 @@
   "select-year": "Selecciona un año",
   "select-color": "Selecciona un color",
   "holiday": "Festivo",
-  "date": "Fecha"
+  "date": "Fecha",
+  "alt-name": "Nombre alternativo"
 }

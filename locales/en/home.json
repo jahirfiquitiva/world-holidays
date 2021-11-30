@@ -9,5 +9,6 @@
   "select-year": "Select a year",
   "select-color": "Select a color",
   "holiday": "Holiday",
-  "date": "Date"
+  "date": "Date",
+  "alt-name": "Alt name"
 }
