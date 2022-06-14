@@ -98,6 +98,7 @@ export const Home: Component = () => {
           nextHoliday={data?.nextHoliday}
           country={localizedCountryName}
         />
+        <br />
         {renderCountryImage()}
       </div>
     </>
