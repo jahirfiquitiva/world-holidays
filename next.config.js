@@ -6,7 +6,7 @@ module.exports = nextTranslate({
   swcMinify: true,
   reactStrictMode: true,
   images: {
-    domains: ['source.unsplash.com'],
+    domains: ['source.unsplash.com', 'images.unsplash.com'],
   },
   webpack(config, { dev, isServer }) {
     if (!dev && !isServer) {

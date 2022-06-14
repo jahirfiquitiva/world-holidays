@@ -1,11 +1,14 @@
 import useTranslation from 'next-translate/useTranslation';
 import { ReactElement, useState, useEffect } from 'react';
-import WorldMap, { CountryContext, Data } from 'react-svg-worldmap';
-import countries from 'react-svg-worldmap/dist/countries.geo';
+import type { CountryContext, Data } from 'react-svg-worldmap';
+import WorldMap from 'react-svg-worldmap';
+// import countries from 'react-svg-worldmap/dist/countries.geo';
 
+import countries from '@/data/countries';
 import { useHolidays } from '@/providers/holidays';
+import { CountryItemData } from '@/types';
 
-const data: Data = countries.features.map((country) => {
+const data: Data = countries.features.map((country: CountryItemData) => {
   return { country: country.I, value: 0 };
 });
 

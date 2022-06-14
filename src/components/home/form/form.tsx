@@ -1,12 +1,13 @@
 import useTranslation from 'next-translate/useTranslation';
 import { useCallback, useEffect, useState } from 'react';
 import { ChromePicker } from 'react-color';
-import countries from 'react-svg-worldmap/dist/countries.geo';
 
 import styles from './form.module.css';
 
+import countries from '@/data/countries';
 import { Component } from '@/components/global/component';
 import { useHolidays } from '@/providers/holidays';
+import { CountryItemData, MappedCountryItem } from '@/types';
 
 interface Country {
   country: string;
@@ -14,10 +15,12 @@ interface Country {
 }
 
 const countriesList: Array<Country> = countries.features
-  .map((country) => {
+  .map((country: CountryItemData) => {
     return { countryCode: country.I, country: country.N };
   })
-  .sort((a, b) => a.country.localeCompare(b.country));
+  .sort((a: MappedCountryItem, b: MappedCountryItem) =>
+    a.country.localeCompare(b.country),
+  );
 
 const buildYearsList = (upcomingYears: number = 5): Array<number> => {
   const years = [new Date().getFullYear()];

@@ -14,7 +14,7 @@ const handler = async (
   const actualYear = parseInt(Array.isArray(year) ? year[0] : year);
 
   const request = await fetch(
-    `https://holidays-api-jf.herokuapp.com/holidays?country=${actualCountry}&year=${
+    `https://api.world-holidays.info/holidays?country=${actualCountry}&year=${
       actualYear || new Date().getFullYear()
     }`,
   );
