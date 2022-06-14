@@ -3,9 +3,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 import { NextApiFunc, PhotoData } from '@/types';
 
-const unsplashAccessKey = process.env.UNSPLASH_ACCESS_KEY;
-const searchResults = 10;
-
 interface UnsplashPhoto {
   width: number;
   height: number;
@@ -25,6 +22,13 @@ interface UnsplashPhoto {
   };
 }
 
+const unsplashAccessKey = process.env.UNSPLASH_ACCESS_KEY;
+const searchResults = 10;
+
+const requestHeaders = new Headers();
+requestHeaders.append('Content-Type', 'application/json');
+requestHeaders.append('Authorization', `Client-ID ${unsplashAccessKey}`);
+
 const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
@@ -32,15 +36,24 @@ const handler = async (
   const { country } = req.query;
   const actualCountry = Array.isArray(country) ? country[0] : country;
   const request = await fetch(
-    `https://api.unsplash.com/photos/random?client_id=${unsplashAccessKey}&query=${actualCountry}%20landscape%20nature&orientation=landscape&count=${searchResults}&content_filter=high`,
+    `https://api.unsplash.com/photos/random?query=${actualCountry}%20landscape%20nature&orientation=landscape&count=${searchResults}&content_filter=high`,
+    {
+      method: 'GET',
+      headers: requestHeaders,
+    },
   );
-  const response = await request.json();
+
   const { status } = request;
-  if (!response) {
-    return res.status(status).json({});
+  if (status < 200 || status >= 400) {
+    const responseText = await request.text();
+    return res.status(status).json({
+      // @ts-ignore
+      error: responseText || 'Unsplash API error. Probably rate limit',
+    });
   }
 
   try {
+    const response = await request.json();
     const photo: UnsplashPhoto = (response || []).filter(
       (it: UnsplashPhoto) => {
         return (
