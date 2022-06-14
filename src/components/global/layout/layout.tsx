@@ -1,5 +1,4 @@
 import Trans from 'next-translate/Trans';
-import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -7,6 +6,7 @@ import styles from './layout.module.css';
 
 import { Component, ComponentProps } from '@/components/global/component';
 import { Meta } from '@/components/global/meta';
+import useTranslation from '@/hooks/useTranslation';
 
 export const Layout: Component = (props: ComponentProps) => {
   const { t } = useTranslation('common');

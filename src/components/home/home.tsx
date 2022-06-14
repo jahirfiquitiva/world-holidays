@@ -1,4 +1,3 @@
-import useTranslation from 'next-translate/useTranslation';
 import { useMemo, useCallback } from 'react';
 import Image from 'next/image';
 
@@ -8,6 +7,7 @@ import { Results } from './results/results';
 
 import { Component } from '@/components/global/component';
 import useRequest from '@/hooks/useRequest';
+import useTranslation from '@/hooks/useTranslation';
 import { useHolidays } from '@/providers/holidays';
 import { HolidaysData, PhotoData } from '@/types/holidays';
 

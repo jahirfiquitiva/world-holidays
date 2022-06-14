@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 
 import { Component } from '@/components/global/component';
+import useTranslation from '@/hooks/useTranslation';
 
 export const NotFound: Component = () => {
   const { t } = useTranslation('not-found');
@@ -21,7 +21,9 @@ export const NotFound: Component = () => {
       <img
         className={'photo'}
         alt={'random photo from Colombia'}
-        src={'https://source.unsplash.com/collection/8308296?orientation=landscape'}
+        src={
+          'https://source.unsplash.com/collection/8308296?orientation=landscape'
+        }
         decoding={'async'}
         loading={'lazy'}
       />

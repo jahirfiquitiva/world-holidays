@@ -1,9 +1,9 @@
 import confetti from 'canvas-confetti';
 import Trans from 'next-translate/Trans';
-import useTranslation from 'next-translate/useTranslation';
 import { useMemo, useEffect } from 'react';
 
 import { Component, ComponentProps } from '@/components/global/component';
+import useTranslation from '@/hooks/useTranslation';
 import { useHolidays } from '@/providers/holidays';
 import { HolidayItem } from '@/types';
 import { localeDate, isDateToday } from '@/utils/get-holidays';
@@ -20,6 +20,7 @@ const particleOptions = {
   spread: 150,
   // colors: ['#FCD116', '#003893', '#CE1126'],
   disableForReducedMotion: true,
+  worker: true,
 };
 
 const renderHolidayData = (
