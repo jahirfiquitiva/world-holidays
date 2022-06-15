@@ -35,4 +35,8 @@ export interface PhotoData {
   alt_description: string;
   url: string;
   link: string;
+  author: {
+    name: string;
+    link: string;
+  };
 }

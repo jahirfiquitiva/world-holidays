@@ -20,6 +20,12 @@ interface UnsplashPhoto {
     title?: string;
     country?: string;
   };
+  user?: {
+    name?: string;
+    links?: {
+      html?: string;
+    };
+  };
 }
 
 const unsplashAccessKey = process.env.UNSPLASH_ACCESS_KEY;
@@ -75,6 +81,10 @@ const handler = async (
       description: photo.location?.title || '',
       alt_description: photo.alt_description,
       link: photo.links.html || '',
+      author: {
+        name: photo.user?.name || 'Unknown',
+        link: photo.user?.links?.html || 'https://unsplash.com/',
+      },
     };
     res.setHeader(
       'Cache-Control',
