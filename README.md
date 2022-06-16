@@ -1,1 +1,1 @@
-# [Worldwide Holidays](https://worldwide-holidays.vercel.app/)
+# [World Holidays](https://world-holidays.info/)

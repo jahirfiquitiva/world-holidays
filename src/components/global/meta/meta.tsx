@@ -9,32 +9,33 @@ interface MetaProps extends ComponentProps {
 
 export const Meta: Component<MetaProps> = (props) => {
   const {
-    title = 'Worldwide Holidays | Festivos en el Mundo | Feriados en el Mundo',
+    title = 'World Holidays | Festivos en el Mundo | Feriados en el Mundo',
     // eslint-disable-next-line max-len
-    description = 'Get to know the upcoming worldwide holidays. Conoce los próximos festivos o feriados en el mundo',
+    description = 'Get to know the upcoming world holidays. Conoce los próximos festivos o feriados en el mundo',
   } = props;
   return (
     <Head>
       <title>{title}</title>
       <meta name={'title'} content={title} />
       <meta name={'description'} content={description} />
+      <meta name="keywords" content="world, holidays, festivos, festivo, feriado, feriados, pais, mundo, tierra, earth, worldwide, holiday" />
 
       <meta property={'og:type'} content={'website'} />
-      <meta property={'og:url'} content={'https://worldwide-holidays.vercel.app/'} />
+      <meta property={'og:url'} content={'https://world-holidays.info/'} />
       <meta property={'og:title'} content={title} />
       <meta property={'og:description'} content={description} />
       <meta
         property={'og:image'}
-        content={'https://worldwide-holidays.vercel.app/static/banner.png'}
+        content={'https://world-holidays.info/static/banner.png'}
       />
 
       <meta property={'twitter:card'} content={'summary_large_image'} />
-      <meta property={'twitter:url'} content={'https://worldwide-holidays.vercel.app/'} />
+      <meta property={'twitter:url'} content={'https://world-holidays.info/'} />
       <meta property={'twitter:title'} content={title} />
       <meta property={'twitter:description'} content={description} />
       <meta
         property={'twitter:image'}
-        content={'https://worldwide-holidays.vercel.app/static/banner.png'}
+        content={'https://world-holidays.info/static/banner.png'}
       />
 
       <link

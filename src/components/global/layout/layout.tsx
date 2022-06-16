@@ -19,7 +19,7 @@ export const Layout: Component = (props: ComponentProps) => {
         <nav>
           <Link href={'/'}>{t('home')}</Link>
           <a
-            href={'https://github.com/jahirfiquitiva/worldwide-holidays'}
+            href={'https://github.com/jahirfiquitiva/world-holidays'}
             rel={'noopener noreferrer'}
             target={'_blank'}
           >
