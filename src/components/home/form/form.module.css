@@ -1,6 +1,8 @@
 .form {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
   gap: 1.2rem;
 }
 
@@ -23,14 +25,22 @@
   width: 100%;
 }
 
+.form input, .form select, .form textarea {
+  margin-bottom: 0;
+}
+
 .form button {
   display: inline-block;
-  align-self: start;
+  align-self: end;
+  min-height: 2.75rem;
 }
 
 @media (min-width: 768px) {
   .form {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    flex-wrap: wrap;
     gap: 2.4rem;
   }
 
@@ -38,6 +48,7 @@
   .formFieldGroup:last-of-type {
     grid-row: 1;
   }
+
   .formFieldGroup:last-of-type {
     grid-column: 2;
   }

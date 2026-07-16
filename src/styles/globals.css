@@ -1,6 +1,10 @@
 @import 'https://fonts.xz.style/serve/inter.css';
 @import 'https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css';
 
+:root {
+  --roundness: 0.75rem;
+}
+
 html,
 body {
   padding: 0;
@@ -78,15 +82,40 @@ table {
   background-color: var(--nc-bg-3) !important;
 }
 
-@media screen and (min-width: 512px) {
-  html,
-  body {
-    font-size: 18px;
-  }
-}
-
 @media (prefers-color-scheme: dark) {
   figure.worldmap__figure-container {
     border-color: rgba(255, 255, 255, 0.12);
   }
+}
+
+.map-container svg path[role="button"]:focus {
+  outline: none;
+  stroke-width: 3px !important;
+  stroke-opacity: 0.75 !important;
+  stroke: var(--nc-lk-2) !important;
+}
+
+input, select, textarea, a button, button, input[type=button], input[type=reset], input[type=submit] {
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--roundness);
+  min-height: 2.75rem;
+}
+
+table th:first-of-type,
+table thead tr:first-of-type {
+  border-top-left-radius: var(--roundness);
+}
+
+table th:last-of-type,
+table thead tr:last-of-type {
+  border-top-right-radius: var(--roundness);
+}
+
+table tr:last-of-type td:first-of-type {
+  border-bottom-left-radius: var(--roundness);
+}
+
+table tr:last-of-type td:last-of-type {
+  border-bottom-right-radius: var(--roundness);
 }

@@ -25,7 +25,7 @@ export const Map = (): ReactElement | null => {
       backgroundColor: 'var(--nc-bg-2)',
       fill:
         countryCode === selectedCountryCode
-          ? holidaysData?.color || 'var(--nc-ac-1)'
+          ? 'var(--nc-ac-1)' // holidaysData?.color || 
           : 'var(--nc-bg-3)',
       fillOpacity: 1,
       stroke: 'var(--nc-tx-1)',

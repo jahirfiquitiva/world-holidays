@@ -81,7 +81,7 @@ export const HolidaysForm: Component = () => {
         onFormSubmit();
       }}
     >
-      <div>
+      {/* <div> */}
         <div className={styles.formFieldGroup}>
           <label htmlFor={'country-select'}>
             {t('select-country')}:&nbsp;&nbsp;
@@ -124,7 +124,7 @@ export const HolidaysForm: Component = () => {
           </select>
         </div>
         <button>{t('update')}</button>
-      </div>
+      {/* </div> */}
       {/* <div className={styles.formFieldGroup}>
         <label htmlFor={'color-picker'}>{t('select-color')}:&nbsp;&nbsp;</label>
         <ChromePicker
