@@ -74,10 +74,10 @@ const handler = async (
         return (
           (it.location?.country || '')
             .toLowerCase()
-            .includes(actualCountry.toLowerCase()) ||
+            .includes((actualCountry || '').toLowerCase()) ||
           (it.description || '')
             .toLowerCase()
-            .includes(actualCountry.toLowerCase())
+            .includes((actualCountry || '').toLowerCase())
         );
       },
     )[0];

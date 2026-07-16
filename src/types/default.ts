@@ -1,4 +1,4 @@
-import { MutatorCallback } from 'swr/dist/types';
+import { MutatorCallback } from 'swr';
 
 // eslint-disable-next-line
 export type NextApiFunc = any | unknown | null;

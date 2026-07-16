@@ -3,8 +3,8 @@ import { ChromePicker } from 'react-color';
 
 import styles from './form.module.css';
 
-import countries from '@/data/countries';
 import { Component } from '@/components/global/component';
+import countries from '@/data/countries';
 import useTranslation from '@/hooks/useTranslation';
 import { useHolidays } from '@/providers/holidays';
 import { CountryItemData, MappedCountryItem } from '@/types';
@@ -14,9 +14,12 @@ interface Country {
   countryCode: string;
 }
 
-const countriesList: Array<Country> = countries.features
-  .map((country: CountryItemData) => {
-    return { countryCode: country.I, country: country.N };
+const countriesList: Array<Country> = countries.objects.countries.geometries
+  .map((country: { properties: CountryItemData }) => {
+    return {
+      countryCode: country.properties.I,
+      country: country.properties.N,
+    };
   })
   .sort((a: MappedCountryItem, b: MappedCountryItem) =>
     a.country.localeCompare(b.country),

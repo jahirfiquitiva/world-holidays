@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { NextApiFunc, DefaultHoliday } from '@/types';
+import { DefaultHoliday, NextApiFunc } from '@/types';
 import { getHolidaysList } from '@/utils/get-holidays';
 
 const handler = async (
@@ -11,7 +11,7 @@ const handler = async (
   const { lang, country, year } = req.query;
   const actualLang = Array.isArray(lang) ? lang[0] : lang;
   const actualCountry = Array.isArray(country) ? country[0] : country;
-  const actualYear = parseInt(Array.isArray(year) ? year[0] : year);
+  const actualYear = parseInt((Array.isArray(year) ? year[0] : year) ?? '');
 
   const request = await fetch(
     `https://api.world-holidays.info/holidays?country=${actualCountry}&year=${

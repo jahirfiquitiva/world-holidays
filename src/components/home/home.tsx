@@ -1,5 +1,5 @@
-import { useMemo, useCallback } from 'react';
 import Image from 'next/image';
+import { useCallback, useMemo } from 'react';
 
 import { HolidaysForm } from './form/form';
 import { Map } from './map/map';
@@ -34,7 +34,7 @@ export const Home: Component = () => {
         {},
         { default: countryName },
       );
-      return localizedCountryName;
+      return localizedCountryName ?? '';
     },
     [t],
   );

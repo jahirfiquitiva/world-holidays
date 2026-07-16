@@ -1,21 +1,26 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 // const withPWA = require('next-pwa');
-const nextTranslate = require('next-translate');
+const nextTranslate = require('next-translate-plugin');
 
-module.exports = nextTranslate({
-  swcMinify: true,
-  reactStrictMode: true,
-  images: {
-    domains: ['source.unsplash.com', 'images.unsplash.com'],
+module.exports = nextTranslate(
+  {
+    reactCompiler: true,
+    reactStrictMode: true,
+    images: {
+      remotePatterns: [
+        { protocol: 'https', hostname: 'source.unsplash.com' },
+        { protocol: 'https', hostname: 'images.unsplash.com' },
+      ],
+    },
+    // turbopack: {
+    //   resolveAlias: {
+    //     // Swap React for Preact only in the browser bundle. The server keeps
+    //     // real React so Next.js SSR / getStaticProps keep working.
+    //     react: { browser: 'preact/compat' },
+    //     'react-dom/test-utils': { browser: 'preact/test-utils' },
+    //     'react-dom': { browser: 'preact/compat' },
+    //   },
+    // },
   },
-  webpack(config, { dev, isServer }) {
-    if (!dev && !isServer) {
-      Object.assign(config.resolve.alias, {
-        react: 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat',
-      });
-    }
-    return config;
-  },
-});
+  { turbopack: true },
+);

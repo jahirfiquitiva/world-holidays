@@ -1,4 +1,4 @@
-import { ReactElement, useState, useEffect } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import type { CountryContext, Data } from 'react-svg-worldmap';
 import WorldMap from 'react-svg-worldmap';
 
@@ -7,9 +7,11 @@ import useTranslation from '@/hooks/useTranslation';
 import { useHolidays } from '@/providers/holidays';
 import { CountryItemData } from '@/types';
 
-const data: Data = countries.features.map((country: CountryItemData) => {
-  return { country: country.I, value: 0 };
-});
+const data: Data = countries.objects.countries.geometries.map(
+  (country: { properties: CountryItemData }) => {
+    return { country: country.properties.I, value: 0 };
+  },
+);
 
 export const Map = (): ReactElement | null => {
   const [mounted, setMounted] = useState(false);
