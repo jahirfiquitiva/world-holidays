@@ -3,10 +3,6 @@ import useStickyState from '@/hooks/useStickyState';
 import {
   createContext,
   useContext,
-  useState,
-  useEffect,
-  Fragment,
-  useReducer,
   Dispatch,
   SetStateAction,
 } from 'react';
@@ -15,14 +11,14 @@ interface HolidaysContextData {
   country?: string;
   countryCode?: string;
   year?: number;
-  color?: string;
+  // color?: string;
 }
 
 const defaultContextValue: HolidaysContextData = {
   country: 'Colombia',
   countryCode: 'CO',
   year: new Date().getFullYear(),
-  color: '#79FFE1',
+  // color: '#79FFE1',
 };
 
 interface HolidaysContextValue {

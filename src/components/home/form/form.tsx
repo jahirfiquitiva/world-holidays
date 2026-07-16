@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ChromePicker } from 'react-color';
+// import { ChromePicker } from 'react-color';
 
 import styles from './form.module.css';
 
@@ -53,14 +53,14 @@ export const HolidaysForm: Component = () => {
   const [currentCountry, setCurrentCountry] = useState(data.countryCode);
   const yearsList = buildYearsList();
   const [currentYear, setCurrentYear] = useState(`${yearsList[0]}`);
-  const [currentColor, setCurrentColor] = useState(data.color);
+  // const [currentColor, setCurrentColor] = useState(data.color);
 
   const onFormSubmit = () => {
     const selectedCountry = countriesList.filter(
       (it) => it.countryCode === currentCountry,
     )?.[0];
     updateHolidaysData({
-      color: currentColor,
+      // color: currentColor,
       year: Number(currentYear),
       country: selectedCountry.country,
       countryCode: selectedCountry.countryCode,
@@ -125,7 +125,7 @@ export const HolidaysForm: Component = () => {
         </div>
         <button>{t('update')}</button>
       </div>
-      <div className={styles.formFieldGroup}>
+      {/* <div className={styles.formFieldGroup}>
         <label htmlFor={'color-picker'}>{t('select-color')}:&nbsp;&nbsp;</label>
         <ChromePicker
           color={currentColor}
@@ -134,7 +134,7 @@ export const HolidaysForm: Component = () => {
           }}
           disableAlpha
         />
-      </div>
+      </div> */}
     </form>
   );
 };
